@@ -2,13 +2,16 @@
 1.
 确保jdk为jdk1.8.0_73以上
 useradd elastic 
+
 2.
 vi /etc/security/limits.conf
 * soft nofile 65536
 * hard nofile 65536
+
 3.
 echo 'vm.max_map_count=262144'>> /etc/sysctl.conf
 sysctl -p
+
 4.三台分别配置
 vim config/elasticsearch.yml
 cluster.name: xxx
@@ -36,8 +39,10 @@ discovery.zen.ping.unicast.hosts: ["192.168.1.200", "192.168.1.201", "192.168.1.
 #network.publish_host: 10.131.152.84
 http.cors.enabled: true
 http.cors.allow-origin: "*"
+
 5.
 su - elastic -c "nohup /home/elasticsearch-5.3.0/bin/elasticsearch > /dev/null 2>&1 &"
+
 6.
 检查集群状态
 http://192.168.1.200:9200/_cluster/health?pretty=true
