@@ -51,30 +51,52 @@ http://192.168.1.202:9200/_cluster/health?pretty=true
 
 安装head：
 从5开始，head不再是一个插件形式安装，head作为独立的一个服务，需要单独安装：
+
 yum install git -y
+
 cd /home/elasticsearch-5.3.0/
+
 git clone git://github.com/mobz/elasticsearch-head.git
+
 cd elasticsearch-head 
+
 npm install -g grunt   #(执行这条之前请看下面注意)
 
+
 注意：目前centos7还不能用yum安装nodejs和npm，需要手动安装
+
 安装nodejs：
+
 去这里下载编译好的包，https://nodejs.org/download/release/latest-v7.x/
+
 然后解压，把里面的bin添加到path即可
+
 安装npm：
+
 #使用如下命令（https://docs.npmjs.com/README#fancy-install-unix-   这个网址中有说明）
+
 sudo curl -L https://npmjs.org/install.sh | sh
 
+
 修改elasticsearch-head的连接地址: 目录：elasticsearch-head/_site/app.js
+
 this.base_uri = this.config.base_uri || this.prefs.get("app-base_uri") || "http://localhost:9200";
+
 把localhost修改成你es的服务器地址，如:
+
 this.base_uri = this.config.base_uri || this.prefs.get("app-base_uri") || "http://192.168.1.x:9200";
 
+
 cd /home/elasticsearch-5.3.0/elasticsearch-head/
+
 执行npm install下载依赖的包：(这句其实不用也行)
+
 npm install
+
 启动：
+
 nohup grunt server &
+
 
 查看head页面：
 http://192.168.1.200:9100
