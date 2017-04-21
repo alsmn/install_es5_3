@@ -14,31 +14,57 @@ sysctl -p
 
 4.三台分别配置
 vim config/elasticsearch.yml
+
 cluster.name: xxx
+
 node.name: "elasticsearch1"
+
 node.master: true
+
 node.data: true
+
 path.data: /home/elasticsearch-5.3.0/data
+
 path.logs: /home/elasticsearch-5.3.0/logs
+
 #从5开始也不支持这个配置了
+
 #bootstrap.mlockall: true
+
 network.host: 192.168.1.200
+
 http.port: 9200
+
 transport.tcp.port: 9300
+
 #从5开始也不支持这个配置了
+
 #discovery.zen.ping.multicast.enabled: false
+
 #discovery.zen.ping.unicast.hosts: ["10.105.219.150", "10.105.219.151:9300", "10.105.219.207:9300"]
+
 discovery.zen.ping.unicast.hosts: ["192.168.1.200", "192.168.1.201", "192.168.1.202"]
+
 #从5开始索引的配置不能配在yml中了
+
 #index.number_of_shards: 3
+
 #index.number_of_replicas: 2
+
 #如下两个参数不认了
+
 #ES_MIN_MEM: 512m
+
 #ES_MAX_MEM: 512m
+
 #network.bind_host: 182.254.216.197
+
 #network.publish_host: 10.131.152.84
+
 http.cors.enabled: true
+
 http.cors.allow-origin: "*"
+
 
 5.
 su - elastic -c "nohup /home/elasticsearch-5.3.0/bin/elasticsearch > /dev/null 2>&1 &"
